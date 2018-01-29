@@ -1,0 +1,261 @@
+
+  Assignment 2
+  Kernel Compilation, System Calls, and Kernel Modules
+
+    Description:
+
+You will walk through the mechanical steps of configuring, compiling,
+installing, and testing a kernel. This will make sure you can handle the
+mechanics, let you see first-hand the time scales of some of the
+development steps in kernel programming. You will then implement a
+simple system call and a simple kernel module, and write user-level
+applications to test your implementation.
+
+  * Learn a few Linux system administration commands, the bare minimum
+    you need to compile, install, and test a kernel.
+  * Learn to reduce boot time by turning off unneeded Linux system services.
+  * Experience configuring, compiling, and installing a Linux kernel.
+  * Experience compiling and installing a set of Linux kernel modules.
+  * Experience writing a simple system call.
+  * Experience writing a simple module.
+  * Experience a kernel crash.
+
+
+    Deadline and Submission
+
+For this assignment, you need to submit three parts separately. *You
+will implement your project using GitHub for your version control and
+track your progress. Submit Git log along with your code.* Here is the
+introduction of GitHub
+<file:///C:/MSCS/OS/Assignment2/slides/short_git_tutorial.docx>.
+
+# Part A, Due: October 2, 2017
+After reboot your VM with kernel 4.4.1, run "uname -a", and then take a
+screenshot including the command prompt.
+Submit the screenshot file and git log on Blackboard.
+
+# Part B, Due: October 9, 2017
+Submit only the kernel files that you created/modified AND the user
+application source code AND git log.
+DO NOT submit the entire kernel source code.
+
+# Part C, Due: October 16, 2017
+Submit the kernel module source code, makefile AND the user application
+source code AND git log.
+DO NOT submit the kernel module objects, e.g. .ko file.
+
+After all parts are submitted, you need to do the demo.
+
+
+    Important Instructions Before You start
+
+Please read the following instructions carefully. It has important
+information.
+
+ 1. You are required to do this assignment in your VM (either CSVB or
+    your own linux VM).
+ 2. You are responsible for your VM.
+ 3. *LOCATION:* It is best to do the assignment in the CS department's
+    Instructional Lab, which is located in the G-7 or Q22 of Engineering
+    Building. NOTE: This assignment *CANNOT* be done on bingsuns or any
+    other computing facility in the University.
+    *USING YOUR OWN MACHINES:* You can potentially use your own machine
+    on which you are brave enough to experiment with Linux Kernel
+    programming. Note that this should be a machine that you can finally
+ 4. bring to the department to show your demo. *START EARLY:* Get
+    started on the assignment early. This cannot be stressed enough. It
+    is not difficult, but some steps, such as repeatedly compiling the
+    kernel, may take a long time. Try not to keep work stacked up close
+    to the deadline because too many students may try to access the few
+    lab computers during the last few days. There are many other classes
+    using the lab, so you may even have trouble finding a seat towards
+    the deadline.
+ 5. *ASKING FOR HELP:* In this assignment , you are free to ask for help
+    from your classmates on Part A of the assignment, including what
+    configurations they use. If anything this is encouraged. However,
+    please do Parts B and C on your own. The thumbrule is: never ask for
+    code from others OR give code to others. Of course, you are
+    encouraged to ask for help from the TA or the Instructor on any part
+    of the assignment.
+
+
+    Part A: Installing, configuring, and compiling Linux Kernel 4.4.1
+
+Download, compile and boot your kernel as explained lab04.pptx
+<file:///C:/MSCS/OS/Assignment2/slides/lab04.pptx> and instructions
+<file:///C:/MSCS/OS/Assignment2/assignments/kernel_compilation_instructions.html>.
+
+
+
+    Part B: System Calls
+
+ 1.
+
+    Now, using the concepts learned in the class, implement and test a
+    system call that returns the current system time by means of a
+    call-by-reference argument. More specifically, your system call
+    should have the following prototype as seen by user-level applications.
+
+    int my_xtime(struct timespec *current_time);
+
+    struct timespec is defined in include/linux/time.h as follows:
+
+    struct timespec {
+            time_t  tv_sec;         /* seconds */
+            long    tv_nsec;        /* nanoseconds */
+    };
+
+    The system call should first verify that user memory space, pointed
+    to by current_time, is valid and writable. If not, is should return
+    a failure (EFAULT) to the user process. If the memory-check
+    succeeds, then it should copy the contents of the kernel's xtime
+    variable to user space address (pointed to by current_time
+    argument). The system call should also print the current time in
+    nanoseconds, to the console using the printk() function.
+ 2. Also write a user-level application which calls your new system call
+    my_xtime(...) and prints out the time obtained from the
+    call-by-reference argument. 
+
+
+    Part C: Kernel Module
+
+ 1.
+
+    Implement a kernel module that creates a /dev/mytime character
+    device. The character device should support the read() operation.
+    When read() is called, it should return a single string that
+    contains the result both current_kernel_time() and getnstimeofday()
+    functions in the kernel. For example, the output should be as follows:
+
+    current_kernel_time: 378959784 384958
+    getnstimeofday: 378959784 384990
+
+ 2. Also, provide a user-level application program that compares the
+    resolution of time reported by your module with that reported by
+    user-level gettimeofday() library routine. *Understand and explain
+    the reason for any difference in your journal.*
+
+    One such application could be written as follows (please fill in the
+    missing code):
+
+    #define N ...
+
+    struct timeval gtodTimes[N];
+    char *procClockTimes[N];
+
+    ...
+    /* allocate memory for character buffers HERE before you use them */
+
+    fd = open("/dev/mytime", O_RDONLY);
+    /* check for errors HERE */
+
+    for( i=0; i < N; i++)
+    {
+    	gettimeofday(&gtodTimes[i], 0);
+    	bytes_read = read(fd, procClockTime[i], MAX_LENGTH);
+    	/* check for errors HERE */
+    }
+
+    close(fd);
+
+    for(i=0; i < N; i++) {
+    	printf("...", gtodTimes[i], procClockTime[i]);
+    	/* fix the output format appropriately in the above line */
+    }
+
+    Run the user-level program for various values of N (both very small
+    and very large). In your journal, explain the reason for any
+    differences that you observe between the three timing mechanisms.
+
+
+ 3. Now, change the module so that /init_module()/ returns -1,
+    recompile, and retest. What happens? Why?
+
+
+    Grading Guidelines
+
+This is how we will grade your assignment during the demo. So please
+prioritize your work accordingly.
+
+TAs will ask any questions about this assignment/your code. You need to
+fully understand this assignment and your implementation.
+
+	Part A: Configuring, and compiling Linux Kernel - 20
+		Answering questions
+		
+	Part B: System Calls - 40 
+		Error checks, correct functionality, user application , coding style, answering questions 
+
+	Part C: Kernel Module - 40
+		Error checks, correct functionality, user application , coding style, answering questions
+										
+	Total = 100
+
+
+    Hints
+
+  * Here's a list of frequently asked questions
+    <file:///C:/MSCS/OS/Assignment2/assignments/kernel_compile_syscall_module_faq.txt>
+    that I'll keep updating.
+  * Linux Device Drivers <http://lwn.net/Kernel/LDD3/>
+  * Chapter 7 of O'Reilly's LDD book
+    <http://lwn.net/images/pdf/LDD3/ch07.pdf>, especially the section on
+    knowing the current time.
+  * Man page for gettimeofday().
+  * Man page for clock_gettime().
+  * Introductory material on Linux Kernel
+      o Chapters 1 and 2 of the following online book provide a good
+        introduction to the kernel, though with a bias towards
+        device-driver development.
+        http://lwn.net/Kernel/LDD3/ <http://lwn.net/Kernel/LDD3/>
+      o In addition, the following website has wealth of information
+        under its Documentation link. http://www.linux.org/
+        <http://www.linux.org/>
+      o Here's another useful link for kernel programming newbies
+        http://www.linuxhq.com/lkprogram.html
+        <http://www.linuxhq.com/lkprogram.html>
+      o The following HOWTO seems useful, though I haven't gone through
+        it.
+        http://www.linux.org/docs/ldp/howto/KernelAnalysis-HOWTO.html
+        <http://www.linux.org/docs/ldp/howto/KernelAnalysis-HOWTO.html>
+      o The following link seems to have some useful guides, though some
+        information there may be dated.
+        http://kernelbook.sourceforge.net/#kdocs
+        <http://kernelbook.sourceforge.net/#kdocs>
+      o For more info, just google for "Linux Kernel" and you'll get
+        lots more.
+
+
+    Delivery Method
+
+ 1.
+
+    Turn in all your code (both kernel and user-level) in a tar-gzipped
+    file through the online Blackboard. *DO NOT* submit the entire
+    kernel source tree. Submit *only* the specific files that you wrote
+    or modified.
+
+ 2. /Feel free to ask for information/help from other students with the
+    kernel configuration and similar technical set-up details, but don't
+    ask/let them do the work for you. Do it on your own. If you can't do
+    this simple exercise by yourself now, you won't be able to do the
+    other exercises later. In particular, do not ask someone else what
+    changes they made to the kernel module, and what happened to them
+    (until after the due date and all assignments are turned in). The
+    odds of two people in the class having the same exact results are
+    very slim, so if you just copy we are likely to notice./
+
+    /Also note that it is possible that you may find parts of the
+    solution to this assignment elsewhere on the Internet. However, you
+    are strongly encouraged to code this simple assignment by yourself
+    for three very good reasons. First, of course, is that you want to
+    develop your coding skills by practicing writing *your own* code.
+    Secondly, you will be asked to explain random parts of the code you
+    submit during demonstration. So understanding your own code is
+    essential. /
+
+Acknowledgment: Adapted by Kartik Gopalan
+<http://www.cs.binghamton.edu/~kartik> from original assignment material
+on kernel installation, configuration and modules by T. P. Baker
+<http://www.cs.fsu.edu/~baker>.
+
