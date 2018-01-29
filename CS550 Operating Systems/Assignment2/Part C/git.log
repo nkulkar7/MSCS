@@ -1,0 +1,170 @@
+commit 365cb0d6091acf509a3b247e4405980ce86e304b
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 23:46:28 2017 -0700
+
+    	modified:   Assg2_PartC/README
+
+commit 7a377a822f6e2f1037918ff1468bd4ca7831f41f
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 23:34:05 2017 -0700
+
+    	modified:   Journal.doc
+
+commit 62b75bc6d53aa05d1f5cc7cc3475d55b6aafc521
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 23:26:22 2017 -0700
+
+    	modified:   Journal.doc
+
+commit e6939d46672aa2c3557a742aa0413ee535036184
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 23:09:42 2017 -0700
+
+    	new file:   Journal.doc
+    	new file:   README
+    	mytime_module_init.c
+
+commit ce0ce675894125bf585b3a0878aff2a919f52caf
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 22:33:53 2017 -0700
+
+    	modified:   Display_mytime.c
+    	modified:   ../mytime.c
+
+commit 6b37dfd11236684f48ccaa0a513feb855228e561
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 18:08:39 2017 -0700
+
+    	modified:   Display_mytime.c
+    	modified:   ../mytime.c
+
+commit c509818a1c5c1900733e6de73915d2b08fd1b743
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 17:17:02 2017 -0700
+
+    	modified:   Display_mytime.c
+
+commit e983a27fed402fc291144fd8f7199dc55caada51
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Sat Oct 21 16:39:30 2017 -0700
+
+    	modified:   Assg2_PartC/Caller/Display_mytime.c
+    	modified:   Assg2_PartC/mytime.c
+
+commit 80317875eab4e549df47d3bb1ec4c5175f38ded7
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 20 19:36:40 2017 -0700
+
+    	new file:   Caller/Display_mytime.c
+    	new file:   Caller/Makefile
+
+commit 2ae9629ad401cc5996cfa214068143420e567267
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 20 19:34:01 2017 -0700
+
+    	modified:   Makefile
+    	new file:   mytime.c
+    	deleted:    Display_mytime.c
+    	modified:   mytime_chr_dev.c
+    	Caller/
+
+commit cd93f983af0524d6c7830457ab5f46f1def33e31
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 20 17:18:37 2017 -0700
+
+    	deleted:    .tmp_versions/mytime_chr_dev.mod
+
+commit de13e132ca25bf5675a37dd27604b6f7166bc3ad
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 20 17:14:47 2017 -0700
+
+    	deleted:    Assg2_PartB/a.out
+    	deleted:    Assg2_PartB/time/.DisplayCurrentTime.o.cmd
+    	deleted:    Assg2_PartB/time/.built-in.o.cmd
+    	deleted:    Assg2_PartB/time/built-in.o
+    	deleted:    Assg2_PartB/time/modules.builtin
+    	deleted:    Assg2_PartB/time/modules.order
+    	deleted:    Assg2_PartB/time_caller/DisplayCurrentTime_Caller
+    	deleted:    README.md
+    	deleted:    git.log
+
+commit c7c9b375813441227a8c6d01ce6e568f11b99aee
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 20 17:06:40 2017 -0700
+
+    	new file:   Assg2_PartC/.tmp_versions/mytime_chr_dev.mod
+    	new file:   Assg2_PartC/Display_mytime.c
+    	new file:   Assg2_PartC/Makefile
+    	new file:   Assg2_PartC/mytime_chr_dev.c
+    	new file:   Assg2_PartC/mytime_chr_dev.ko
+    	new file:   Assg2_PartC/mytime_chr_dev.o
+    	deleted:    Assg2_PartB/a.out
+    	deleted:    Assg2_PartB/time/.DisplayCurrentTime.o.cmd
+    	deleted:    Assg2_PartB/time/.built-in.o.cmd
+    	deleted:    Assg2_PartB/time/built-in.o
+    	deleted:    Assg2_PartB/time/modules.builtin
+    	deleted:    Assg2_PartB/time/modules.order
+    	deleted:    Assg2_PartB/time_caller/DisplayCurrentTime_Caller
+    	deleted:    README.md
+    	deleted:    git.log
+
+commit 3ee1f61357f925913221fadb330e8ba4f04980be
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 20 17:00:55 2017 -0700
+
+    	deleted:    Assg2_PartB/a.out
+    	deleted:    Assg2_PartB/time/.DisplayCurrentTime.o.cmd
+    	deleted:    Assg2_PartB/time/.built-in.o.cmd
+    	deleted:    Assg2_PartB/time/built-in.o
+    	deleted:    Assg2_PartB/time/modules.builtin
+    	deleted:    Assg2_PartB/time/modules.order
+    	deleted:    Assg2_PartB/time_caller/DisplayCurrentTime_Caller
+    	deleted:    README.md
+    
+    	deleted:    git.log
+    
+    	Assg2_PartC/
+
+commit 5ac67c25871f3569153bad45f7a4097dd0a559f8
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Tue Oct 17 18:41:51 2017 -0700
+
+    	deleted:    Assg2_PartB/DisplayCurrentTime_Caller.c
+    	new file:   git.log
+
+commit ed22c15aacea229e347989b636ab35913476250b
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 13 00:49:41 2017 -0700
+
+    	new file:   Assg2_PartB/time_caller/DisplayCurrentTime_Caller
+    	new file:   Assg2_PartB/time_caller/DisplayCurrentTime_Caller.c
+    	new file:   Assg2_PartB/time_caller/DisplayCurrentTime_Caller.o
+    	new file:   Assg2_PartB/time_caller/Makefile
+    
+    	deleted:    Assg2_PartB/DisplayCurrentTime_Caller.c
+    
+    	git.log
+
+commit 1dfd27c2d0062b295ddffa1036c1bcd5d83b3856
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 13 00:07:07 2017 -0700
+
+    Added	new file:   Assg2_PartB/DisplayCurrentTime_Caller.c
+    Added	new file:   Assg2_PartB/Makefile
+    Added	new file:   Assg2_PartB/a.out
+    Added	new file:   Assg2_PartB/syscall_64.tbl
+    Added	new file:   Assg2_PartB/syscalls.h
+    Added	new file:   Assg2_PartB/time/.DisplayCurrentTime.o.cmd
+    Added	new file:   Assg2_PartB/time/.built-in.o.cmd
+    Added	new file:   Assg2_PartB/time/DisplayCurrentTime.c
+    Added	new file:   Assg2_PartB/time/DisplayCurrentTime.o
+    Added	new file:   Assg2_PartB/time/Makefile
+    Added	new file:   Assg2_PartB/time/built-in.o
+    Added	new file:   Assg2_PartB/time/modules.builtin
+    Added	new file:   Assg2_PartB/time/modules.order
+
+commit 72a72a8c6dc2501fac9bd571f706106428d39e52
+Author: nkulkar7 <32372775+nkulkar7@users.noreply.github.com>
+Date:   Thu Sep 28 15:41:05 2017 -0400
+
+    Initial commit
