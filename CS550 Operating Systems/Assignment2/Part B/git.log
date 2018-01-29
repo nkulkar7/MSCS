@@ -1,0 +1,36 @@
+commit ed22c15aacea229e347989b636ab35913476250b
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 13 00:49:41 2017 -0700
+
+    	new file:   Assg2_PartB/time_caller/DisplayCurrentTime_Caller
+    	new file:   Assg2_PartB/time_caller/DisplayCurrentTime_Caller.c
+    	new file:   Assg2_PartB/time_caller/DisplayCurrentTime_Caller.o
+    	new file:   Assg2_PartB/time_caller/Makefile
+    
+    	deleted:    Assg2_PartB/DisplayCurrentTime_Caller.c
+    
+    	git.log
+
+commit 1dfd27c2d0062b295ddffa1036c1bcd5d83b3856
+Author: Nutan Kulkarni <nkulkar7@binghamton.edu>
+Date:   Fri Oct 13 00:07:07 2017 -0700
+
+    Added	new file:   Assg2_PartB/DisplayCurrentTime_Caller.c
+    Added	new file:   Assg2_PartB/Makefile
+    Added	new file:   Assg2_PartB/a.out
+    Added	new file:   Assg2_PartB/syscall_64.tbl
+    Added	new file:   Assg2_PartB/syscalls.h
+    Added	new file:   Assg2_PartB/time/.DisplayCurrentTime.o.cmd
+    Added	new file:   Assg2_PartB/time/.built-in.o.cmd
+    Added	new file:   Assg2_PartB/time/DisplayCurrentTime.c
+    Added	new file:   Assg2_PartB/time/DisplayCurrentTime.o
+    Added	new file:   Assg2_PartB/time/Makefile
+    Added	new file:   Assg2_PartB/time/built-in.o
+    Added	new file:   Assg2_PartB/time/modules.builtin
+    Added	new file:   Assg2_PartB/time/modules.order
+
+commit 72a72a8c6dc2501fac9bd571f706106428d39e52
+Author: nkulkar7 <32372775+nkulkar7@users.noreply.github.com>
+Date:   Thu Sep 28 15:41:05 2017 -0400
+
+    Initial commit

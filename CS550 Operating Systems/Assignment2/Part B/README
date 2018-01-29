@@ -1,0 +1,5 @@
+The DisplayCurrentTime_Caller.c is the caller file in which the system call is called. Compile it using Makefile present in time_call/ directory.
+The DisplayCurrentTime.c is the file in which the system call is defined. Compile it along with the kernel using Makefile present in kernel directory.
+System call number and its entry point is defined in the file syscall_64.tbl.
+Declaration of system call function is done in syscalls.h
+
