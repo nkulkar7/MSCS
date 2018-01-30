@@ -1,0 +1,9 @@
+Script started on Sun 12 Nov 2017 08:18:05 PM PST
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ mkfifo Pipe1
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ echo 123 > Pipe1 
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ echo 123 > Pipe1 [Kecho 123 > Pipe1 [C[1P[1P[1P[1@2[1P[1@4[1@5[1@6
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ echo 456 > Pipe1 [C[1P[1P[1P[1@7[1@8[1@9
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ exit
+exit
+
+Script done on Sun 12 Nov 2017 08:19:39 PM PST

@@ -1,0 +1,11 @@
+Script started on Sun 12 Nov 2017 08:19:03 PM PST
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ cat Pipe1 
+123
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ cat Pipe1 
+456
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ cat Pipe1 
+789
+]0;nkulkar@ubuntu: ~/hello-oscourse/Assg3_PartA[01;32mnkulkar@ubuntu[00m:[01;34m~/hello-oscourse/Assg3_PartA[00m$ exit
+exit
+
+Script done on Sun 12 Nov 2017 08:19:36 PM PST

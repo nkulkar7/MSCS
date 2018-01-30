@@ -1,0 +1,22 @@
+Create the kernel module by compiling the numpipe.c file using the Makefile.
+The numpipe.c and its Makefile are present in the directory kernel_module/.
+
+Insert kernel module by executing following command:
+sudo insmod numpipe.ko buffer_size=<size>
+
+Give read,write permission to the device driver by executing following command:
+sudo chmod a+r+w /dev/numpipe
+
+Compile producer and consumer code present in the directory user_appl/ using Makefile present in that directory.
+
+Execute producer by executing following command:
+./producer_numbers.o /dev/numpipe
+
+Execute consumer by executing following command:
+./consumer_numbers.o /dev/numpipe
+
+Remove kernel module by executing following command:
+sudo rmmod numpipe.ko
+
+
+
