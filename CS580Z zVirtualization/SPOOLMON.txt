@@ -1,0 +1,71 @@
+/*NUTAN KULKARNI SPOOLMON HW*/                                        
+                                                                      
+/*PARSE USER INPUT*/                                                  
+PARSE ARG THRSHLD INTRVL                                              
+                                                                      
+/*SET THRESHOLD FLAG*/                                                
+THRSHLD_FLAG = 0                                                      
+                                                                      
+DO FOREVER                                                            
+                                                                      
+/*USING PIPE EXTRACT TIME AND ACTUAL THRESHOLD */                     
+'PIPE (END ?)',                                                       
+'  CP QUERY TIME',                                                    
+'| DROP LAST 1  ',        /*WE DONT WANT THE 2ND LINE*/               
+'| SPEC WORD3   ',        /*3RD WORD IS THE TIME IN HH:MM:SS */       
+'| VAR C_TIME',           /*STORE TIME IN A VAR */                    
+'?',                                                                  
+'  CP QUERY ALLOC SPOOL', /*SECOND PIPE*/                             
+'| LOCATE /%/',           /*LOCATE LINES WITH THRESHOLD */            
+'| DROP FIRST 1',         /*WE DONT WANT THE HEADER LINES*/           
+'| DROP LAST 2',          /*THRESHOLD IS IN 2ND LAST CHARACTER*/      
+'| SPEC WORD8 ',          /*FETCH LAST COLUMN*/                       
+'| STRIP TRAILING % ',    /*REMOVE % CHARACTER*/                      
+'| VAR C_THRSHLD'         /*STORE ACTUAL THRESHOLD */                 
+                                                                      
+                                                                      
+/*THRESHOLD REACHED LOGIC*/                                           
+/*CHK IF ACTUAL THRESHOLD EQUALS USER INPUT THRESHOLD */              
+/*IF TRUE THEN SEND WARNING TO OPERATOR */                            
+IF C_THRSHLD == THRSHLD THEN                                                    
+DO                                                                              
+                                                                                
+   /* IF THRESHOLD IS REACHED SEND WARNING TO OPERATOR*/                        
+   DO 10                                                                        
+   TEXT = "WARNING: SPOOL SPACE USAGE HAS EXCEEDED THE SPECIFIED LIMIT.         
+ SPOOL SPACE IN USE:" C_THRSHLD"% CYLINDERS AT" C_TIME "."                      
+   TELL OPERATOR TEXT                                                           
+                                                                                
+   /*SET THRESHOLD FLAG: 1-THRESHOLD REACHD,0-THRESHOLD NOT REACHD*/            
+   THRSHLD_FLAG = 1                                                             
+   END                                                                          
+END                                                                             
+                                                                                
+/*BELOW THRESHOLD LOGIC*/                                                       
+/*IN LAST ITERATION IF READER WAS PURGED THEN       */                          
+/*IN CURRENT ITERATION CHK IF IT IS BELOW THRESHOLD */                          
+/*IF TRUE THEN SEND BELOW THRESHOLD MESSAGE TO OPERATOR */                      
+IF THRSHLD_FLAG = 3 THEN                                                        
+IF C_THRSHLD < THRSHLD THEN                                                     
+DO                                                                              
+   TEXT = "SPOOL SPACE USAGE HAS DROPPED BELOW THE SPECIFIED THRESHOLD          
+ TO" C_THRSHLD"% CYLINDERS AT" C_TIME "."                                       
+   THRSHLD_FLAG = 0                                                             
+   TELL OPERATOR TEXT                                                           
+END                                                                             
+                                                                                
+/*PURGE READER LOGIC*/                                                          
+/* IF THRESHOLD WAS REACHED IN LAST ITERATION AND WARNING WAS PROVIDED*/        
+/* THEN PURGE THE READER */                                                     
+/* SEND BELOW THRESHOLD WARNING TO OPERATOR */  
+IF THRSHLD_FLAG = 1 THEN                        
+DO                                              
+   PURGE READER ALL                             
+   THRSHLD_FLAG = 3                             
+END                                             
+                                                
+                                                
+CP SLEEP INTRVL SEC                             
+                                                
+END                                             
+                                                

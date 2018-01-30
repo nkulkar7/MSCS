@@ -1,0 +1,14 @@
+/*  Nutan Kulkarni PIPES HW 1  */                                        
+                                                                         
+                                                                         
+'Pipe',                                                                  
+   '  cp query time',                                                    
+   '| locate /TIME/ ',           /* We only want first line of output */ 
+   '| Spec Word 3 1 Word 6 NW ', /* Get time at Col 1 followed by date*/ 
+   '| split   ',                 /* Split time and date at blank      */ 
+   '| join /  / ',               /* Join time and date using 2 blanks */ 
+   '| split / ' ,                /* Split date at '/'                 */ 
+   '| join /-/ ',                /* First Join MM and DD using '-'    */ 
+   '| join /-20/ ',              /* Join YY in YYYY format to MM-DD   */ 
+   '| cons '                     /* Display output on console         */ 
+

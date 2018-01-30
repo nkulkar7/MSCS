@@ -1,0 +1,86 @@
+/*Nutan Kulkarni REXX PGM2 */                                             
+                                                                          
+say "Enter Date in MM/DD/YYYY format"                                     
+PULL U_Date                                                               
+Parse var U_Date U_MM "/" U_DD "/" U_YYYY                                 
+                                                                          
+/*Read data from LABELS file and store in array LABELS */                 
+/*Simultaneously create another array Due_Date         */                 
+Do i = 1 to lines(LABELS CSV A)                                           
+                                                                          
+  LABELS.i = LINEIN(LABELS CSV A)                                         
+  parse var LABELS.i Zone "," LastName "," Due_Date.i "," ADC,            
+  "," Address "," City "," State "," Zip "," County "," Last              
+                                                                          
+/*Exception handling for records that have ',' in LastName */             
+/*If LastName has ',' then a part of LastName gets stored in Due_Date*/   
+  if POS('/',Due_Date.i) == 0 then                                        
+  do                                                                      
+    /*Column ADC has the correct due date for such record */              
+    /*Hence, assign content of ADC to DueDate.i           */              
+    Due_Date.i = ADC                                                      
+  end                                                                     
+                                                                          
+end                                                                       
+                                                                          
+/* Index used for array PrevRecs */                                       
+k=1                                                                       
+                                                                          
+                                                                          
+/* Ignore first record because it has column headers */                   
+/* Compare each date in array Due_Date to user input date */              
+/* If dates are previous to input date then add to new array PrevRecs */  
+Do j = 2 to i-1                                                           
+                                                                          
+   /* Split Due_Date in three variables */                                
+   parse var Due_Date.j MM "/" DD "/" YYYY                                
+                                                                          
+   /* Proceed only if year is less than or equal to user input year */    
+   if YYYY <= U_YYYY then                                                 
+   Do                                                                     
+      /* If year is equal to user year than check month and date */       
+      /* Else the year is less than user year, add date to PrevRecs */    
+      If YYYY == U_YYYY then                                              
+      Do                                                                  
+         /* If month should be equal or less than else ignore record */   
+         If MM <= U_MM then                                               
+         Do                                                               
+            /* If months are equal then check date */                     
+            If MM == U_MM then                                            
+            Do                                                            
+               /* If date is less than user date then add date to */      
+               /* the array PrevRecs else ignore record           */      
+               If DD < U_DD then                                          
+               Do                                                         
+                  PrevRecs.k = LABELS.j                                   
+                  k = k + 1                                               
+               End                                                        
+            End                                                           
+            /* If month is less than user month then add date */          
+            /* to the array PrevRecs                          */          
+            Else                                                          
+            Do                                                            
+               PrevRecs.k = LABELS.j                                      
+               k = k + 1                                                  
+            End                                                           
+         End                                                              
+      End                                                                 
+      /* If year is less than user input year no need to check month */   
+      /* and date directly add date to array PrevRec                 */   
+      Else                                                                
+      Do                                                                  
+         PrevRecs.k = LABELS.j                                            
+         k = k + 1                                                        
+      End                                                                 
+   End                                                                    
+end                                                                       
+                                                                          
+/* Define output file name, file type, file mode */                       
+FileName = 'PREVRECS CSV A'                                               
+                                                                          
+                                                                          
+/* Write all records from array PrevRecs to Output File */                
+do m = 1 to k-1                                                           
+Ans = LINEOUT(FileName,PrevRecs.m)                                        
+end                                                                       
+                                                                          

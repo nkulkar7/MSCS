@@ -1,0 +1,62 @@
+/* Nutan Kulkarni PIPES HW 2 */                                     
+                                                                    
+                                                                    
+'Pipe (end ?)',                                                     
+   '| < LABELS CSV A ',                                             
+   '| drop 1 ',             /*Drop first record as its a header */  
+   '| spec 2-* 1 ',         /*We dont need first column         */  
+   '| strip leading , 1 ',  /*Remove leading ,                  */  
+   '| strip trailing , 2 ', /*Remove trailing two commas        */  
+   '| strip trailing y ',   /*Remove trailing y character       */  
+   '| strip trailing , 1 ', /*Remove trailing one comman        */  
+   '| strip trailing   ',   /*Remove trailing blank             */  
+   '| strip trailing y ',   /*Remove trailing y                 */  
+   '| split , ',            /*Split all columns                 */  
+   '| a:nlocate %/%',       /*Goto a: if / present in record    */  
+   '| b:nlocate %"%',       /*Goto b: if " present in record    */  
+   '| x:faninany ',         /*Combine all corrected records     */  
+   '| join 4 /,/',          /*Join 4 records into one record    */  
+   '| c:fanout',            /*fanout new record to create labels*/  
+   '?',                                                             
+   ' y:faninany ',          /*Collect Labels over here          */  
+   '| > OUT186 TEXT A',     /*Write Labels to the output file   */  
+   '| join 2 /,/',          /*Join all labels for couting zip   */  
+   '| spec fs , field -1 1',/*Fetch last column i.e. zipcode    */  
+   '| sort ',               /*sort all the zip codes            */       
+   '| unique count',        /*count duplicates                  */       
+   '| spec 9-10 1 11-* 4',  /*Print count and zip code          */       
+   '| >> OUT186 TEXT A',    /*Append count and zip to output file */     
+   '?a: ',                  /*Date records passed here          */       
+   '| locate / / ',         /*If blank present means not date   */       
+   '| x:',                  /*Send back record to x:            */       
+   '?b: ',                  /*Quoted records passed here        */       
+   '| join 1 /,/ ',               /*Join Consecutive records        */   
+   '| x: ',                       /*Send back record to x:          */   
+   '?c: ',                        /*Logic related to LastName       */   
+   '| d:nlocate %"% ',            /*Goto d: if " present in record  */   
+   '| spec fs , field1 1',        /*Otherwise Print LastName        */   
+   '| y: ',                     /*Print field1 as LastName        */     
+   '?d: ',                        /*Execption Handling for LastName */   
+   '| e:locate fs , f1 /"/ ',     /*Goto e: if " present in Address */   
+   '| spec fs , fields 1;2 1',    /*Fetch LastName seperated by ,   */   
+   '| y:  ',                      /*Print Fields 1&2 as LastName    */   
+   '?e: ',                        /*Execption Handling for LastName */   
+   '| spec fs , field1 1',        /*Fetch LastName not separated    */   
+   '| y:  ',                      /*Print field1 as LastName        */   
+   '?c: ',                        /*Logic related to Address        */   
+   '| i:nlocate %"% ',            /*Goto i: if " present in record  */   
+   '| spec fs , fields -4 1',     /*Otherwise Print Address         */   
+   '| y:   ',                     /*Print field2 as Address         */  
+   '?i: ',                        /*Execption Handling for Address  */  
+   '| j:locate fs , f3 /"/ ',     /*Goto j: if " present in Address */  
+   '| spec fs , fields -5;-4 1',  /*Otherwise field2&3 are Address  */  
+   '| y:   ',                     /*Print field2&3 as Address       */  
+   '?j: ',                        /*" present in LastNm not Address */  
+   '| spec fs , fields -4 1',     /*Fetch field3 as Address        */   
+   '| y:   ',                     /*Print Address                   */  
+   '?c: ',                        /*City, State, Zip        */          
+   '| spec fs , fields -3;-1 1',  /*Fetch Last three fields */          
+   '| y:  '                       /*Print City,State & Zip  */          
+                                                                        
+finis OUT186 TEXT A                                                     
+exit                                                                     

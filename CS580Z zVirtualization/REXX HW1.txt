@@ -1,0 +1,20 @@
+/*  Nutan Kulkarni REXX HW 1  */               /* REXX */
+say 'Enter Temperature'           
+PULL t                            
+say 'Enter Speed'                 
+PULL v                            
+if (v >= 0 & v <= 4) then          
+   do                             
+      say 'WCI is' t              
+   end                            
+else if (v >= 45) then
+   do              
+      say 'WCI is' (1.6 * t) - 55
+   end  
+else
+   do
+      a = 91.4 - t
+      b = 0.0203 * v
+      c = 0.304 * (v/2)
+      say 'WCI is' 91.4 + (a * (b - c - 0.474))
+   end
